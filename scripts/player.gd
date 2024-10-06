@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var acceleration = 10
 @export var max_speed = 6.5
-
+@onready var sprite = $AnimatedSprite2D
 func _physics_process(delta: float) -> void:
 	var is_running = false
 	var direction = Vector2(0,0)
@@ -19,9 +19,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		$AnimatedSprite2D.play("idle")	
 	if direction.x == -1:
-		$AnimatedSprite2D.flip_h = true
+		sprite.flip_h = true
 	elif direction.x == 1:
-		$AnimatedSprite2D.flip_h = false
+		sprite.flip_h = false
 	if velocity.y > .01 * max_speed and direction.y == 0:
 		direction.y = -1
 	if velocity.y < -.01 * max_speed and direction.y == 0:
@@ -38,4 +38,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity += direction * acceleration * delta
 	velocity = velocity.clamp(Vector2(-max_speed,-max_speed), Vector2(max_speed,max_speed))
-	move_and_collide(velocity)
+	var collision = move_and_collide(velocity)
+	if collision:
+		velocity = velocity.bounce(collision.get_normal())
+	
