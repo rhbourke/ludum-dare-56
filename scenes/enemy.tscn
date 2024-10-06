@@ -1,5 +1,6 @@
-[gd_scene load_steps=14 format=3 uid="uid://yaoxqku5k065"]
+[gd_scene load_steps=17 format=3 uid="uid://yaoxqku5k065"]
 
+[ext_resource type="Script" path="res://scenes/enemy.gd" id="1_shum5"]
 [ext_resource type="Texture2D" uid="uid://bijom27ll2qef" path="res://art/spider.png" id="1_wvj2e"]
 [ext_resource type="Texture2D" uid="uid://usle6pu1clb8" path="res://art/shadow.tres" id="2_dcie7"]
 
@@ -74,28 +75,61 @@ animations = [{
 "speed": 25.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_keqla"]
-radius = 2.10777
-height = 6.95982
+[sub_resource type="Gradient" id="Gradient_vmyaw"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 0, 0, 0)
 
-[node name="Enemy" type="CharacterBody2D"]
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_cdo7x"]
+gradient = SubResource("Gradient_vmyaw")
+width = 5
+height = 5
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xhf8q"]
+radius = 2.4199
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Character Body" type="CharacterBody2D" parent="."]
 scale = Vector2(8, 8)
+collision_layer = 2
+motion_mode = 1
+wall_min_slide_angle = 1.24966
+script = ExtResource("1_shum5")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Character Body"]
 texture_filter = 1
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_o3ynw")
 animation = &"run"
 autoplay = "run"
-frame_progress = 0.235155
+frame_progress = 0.498791
 
-[node name="Sprite2D" type="Sprite2D" parent="AnimatedSprite2D"]
+[node name="Shadow" type="Sprite2D" parent="Character Body/AnimatedSprite2D"]
 show_behind_parent = true
 position = Vector2(-3, 3)
 scale = Vector2(0.25, 0.15)
 texture = ExtResource("2_dcie7")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Eye Light" type="PointLight2D" parent="Character Body/AnimatedSprite2D"]
+position = Vector2(11.4286, -3.21429)
+energy = 0.7
+texture = SubResource("GradientTexture2D_cdo7x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character Body"]
 position = Vector2(-1, -0.333333)
-rotation = -1.26885
-shape = SubResource("CapsuleShape2D_keqla")
+shape = SubResource("CircleShape2D_xhf8q")
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="Character Body"]
+target_desired_distance = 20.0
+path_postprocessing = 1
+avoidance_enabled = true
+radius = 25.0
+max_speed = 200.0
+
+[node name="Timer" type="Timer" parent="Character Body"]
+wait_time = 0.22
+autostart = true
+
+[connection signal="velocity_computed" from="Character Body/NavigationAgent2D" to="Character Body" method="_on_navigation_agent_2d_velocity_computed"]
+[connection signal="timeout" from="Character Body/Timer" to="Character Body" method="_on_timer_timeout"]
