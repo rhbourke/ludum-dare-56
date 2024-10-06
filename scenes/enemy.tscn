@@ -103,7 +103,7 @@ scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_o3ynw")
 animation = &"run"
 autoplay = "run"
-frame_progress = 0.498791
+frame_progress = 0.478274
 
 [node name="Shadow" type="Sprite2D" parent="Character Body/AnimatedSprite2D"]
 show_behind_parent = true
