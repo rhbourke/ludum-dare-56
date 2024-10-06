@@ -1,60 +1,45 @@
-[gd_scene load_steps=2 format=3 uid="uid://kv0vjr4fxykp"]
+[gd_scene load_steps=3 format=3 uid="uid://kv0vjr4fxykp"]
 
-[ext_resource type="PackedScene" uid="uid://c7uowhqfi8vnq" path="res://levels/level0.tscn" id="1_543x1"]
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_8u66y"]
+[ext_resource type="PackedScene" uid="uid://smnutmxktj34" path="res://scenes/menus.tscn" id="3_2kjpq"]
 
-[node name="Game" type="Node2D"]
-
-[node name="level0" parent="." instance=ExtResource("1_543x1")]
-
-[node name="UI" type="Control" parent="."]
+[node name="Game" type="Control"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="HUD" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Options" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Main" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Guide" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Pause" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Level Select" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="Game Over" type="Control" parent="UI"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_8u66y")
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 
+[node name="Menus" parent="." instance=ExtResource("3_2kjpq")]
+layout_mode = 1
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="UI Cam" type="Camera2D" parent="."]
+anchor_mode = 0
+
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
+visible = false
 color = Color(0.0352941, 0.0352941, 0.0352941, 1)
+
+[connection signal="pressed" from="Menus/Main/VBoxContainer/ButtonsVBox/LevelSelectButton" to="." method="_on_level_select_button_pressed"]
+[connection signal="pressed" from="Menus/Main/VBoxContainer/ButtonsVBox/HowtoPlayButton" to="." method="_on_howto_play_button_pressed"]
+[connection signal="pressed" from="Menus/Main/VBoxContainer/ButtonsVBox/OptionsButton" to="." method="_on_options_button_pressed"]
+[connection signal="pressed" from="Menus/Main/VBoxContainer/ButtonsVBox/QuitButton" to="." method="_on_quit_button_pressed"]
+[connection signal="pressed" from="Menus/HowToPlay/VBoxContainer/ContentVBox/ReturnFromHowToPlay" to="." method="_on_return_from_how_to_play_pressed"]
+[connection signal="pressed" from="Menus/Options/VBoxContainer/MarginContainer/ContentVBox/FullscreenContainer/FullscreenToggle" to="." method="_on_fullscreen_toggle_pressed"]
+[connection signal="pressed" from="Menus/Options/VBoxContainer/MarginContainer/ContentVBox/ReturnFromOptions" to="." method="_on_return_from_options_pressed"]
+[connection signal="pressed" from="Menus/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer/LoadLevel1" to="." method="_on_load_level_1_pressed"]
+[connection signal="pressed" from="Menus/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer/LoadLevel2" to="." method="_on_load_level_2_pressed"]
+[connection signal="pressed" from="Menus/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer/LoadLevel3" to="." method="_on_load_level_3_pressed"]
+[connection signal="pressed" from="Menus/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer/LoadLevel4" to="." method="_on_load_level_4_pressed"]
+[connection signal="pressed" from="Menus/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer/LoadLevel5" to="." method="_on_load_level_5_pressed"]
+[connection signal="pressed" from="Menus/LevelSelect/VBoxContainer/ContentVBox/ReturnFromLevelSelect" to="." method="_on_return_from_level_select_pressed"]
+
+[editable path="Menus"]
