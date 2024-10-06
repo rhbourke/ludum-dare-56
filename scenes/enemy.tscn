@@ -103,7 +103,7 @@ scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_o3ynw")
 animation = &"run"
 autoplay = "run"
-frame_progress = 0.478274
+frame_progress = 0.0104111
 
 [node name="Shadow" type="Sprite2D" parent="Character Body/AnimatedSprite2D"]
 show_behind_parent = true
@@ -113,7 +113,6 @@ texture = ExtResource("2_dcie7")
 
 [node name="Eye Light" type="PointLight2D" parent="Character Body/AnimatedSprite2D"]
 position = Vector2(11.4286, -3.21429)
-energy = 0.7
 texture = SubResource("GradientTexture2D_cdo7x")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character Body"]

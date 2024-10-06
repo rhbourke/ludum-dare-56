@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://c7uowhqfi8vnq"]
+
+[ext_resource type="TileSet" uid="uid://mstgkiw1bqbk" path="res://art/tileset.tres" id="1_gaf7s"]
+[ext_resource type="PackedScene" uid="uid://dov0h503tuxh4" path="res://scenes/player.tscn" id="2_jmf4o"]
+[ext_resource type="PackedScene" uid="uid://bpmxdkstaxl1" path="res://scenes/cheese.tscn" id="3_xdet6"]
+[ext_resource type="PackedScene" uid="uid://dyhwc32l0vsj5" path="res://scenes/spawner.tscn" id="4_4dftk"]
+
+[node name="Level" type="Node2D"]
+
+[node name="Tiles" type="TileMapLayer" parent="."]
+texture_filter = 1
+scale = Vector2(2.2, 2.2)
+tile_set = ExtResource("1_gaf7s")
+
+[node name="Player" parent="." instance=ExtResource("2_jmf4o")]
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+position_smoothing_speed = 4.0
+
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="Cheese" parent="." instance=ExtResource("3_xdet6")]
+
+[node name="Cheese2" parent="." instance=ExtResource("3_xdet6")]
+
+[node name="Cheese3" parent="." instance=ExtResource("3_xdet6")]
+
+[node name="Spawner" parent="." instance=ExtResource("4_4dftk")]
