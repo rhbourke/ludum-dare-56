@@ -40,5 +40,5 @@ func _physics_process(delta: float) -> void:
 	velocity = velocity.clamp(Vector2(-max_speed,-max_speed), Vector2(max_speed,max_speed))
 	var collision = move_and_collide(velocity)
 	if collision:
-		velocity = velocity.bounce(collision.get_normal())
+		velocity = velocity.bounce(collision.get_normal()) * .7
 	

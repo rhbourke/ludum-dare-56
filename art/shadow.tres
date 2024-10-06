@@ -1,0 +1,13 @@
+[gd_resource type="GradientTexture2D" load_steps=2 format=3 uid="uid://usle6pu1clb8"]
+
+[sub_resource type="Gradient" id="Gradient_muy4x"]
+offsets = PackedFloat32Array(0, 0.318182)
+colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
+
+[resource]
+resource_name = "shadow"
+gradient = SubResource("Gradient_muy4x")
+width = 300
+height = 300
+fill = 1
+fill_from = Vector2(0.5, 0.5)

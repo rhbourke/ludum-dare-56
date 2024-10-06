@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://bpmxdkstaxl1"]
+
+[ext_resource type="Script" path="res://scenes/cheese.gd" id="1_eemxb"]
+[ext_resource type="Texture2D" uid="uid://cu8o6qjy3v1ii" path="res://art/cheese.png" id="1_v6v7j"]
+[ext_resource type="Texture2D" uid="uid://usle6pu1clb8" path="res://art/shadow.tres" id="3_f7a2u"]
+[ext_resource type="Texture2D" uid="uid://cwi075twgaikb" path="res://art/cheeselight.tres" id="4_am0vb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n2clo"]
+size = Vector2(34, 24)
+
+[node name="Cheese" type="Area2D"]
+scale = Vector2(2, 2)
+script = ExtResource("1_eemxb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("RectangleShape2D_n2clo")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("1_v6v7j")
+
+[node name="Shadow" type="Sprite2D" parent="Sprite2D"]
+show_behind_parent = true
+position = Vector2(0, 7)
+scale = Vector2(0.35, 0.2)
+texture = ExtResource("3_f7a2u")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+energy = 0.3
+texture = ExtResource("4_am0vb")
+height = 400.0
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

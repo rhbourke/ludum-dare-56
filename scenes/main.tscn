@@ -1,8 +1,9 @@
-[gd_scene load_steps=23 format=4 uid="uid://kv0vjr4fxykp"]
+[gd_scene load_steps=24 format=4 uid="uid://kv0vjr4fxykp"]
 
 [ext_resource type="PackedScene" uid="uid://dov0h503tuxh4" path="res://scenes/player.tscn" id="1_y17fp"]
 [ext_resource type="PackedScene" uid="uid://yaoxqku5k065" path="res://scenes/enemy.tscn" id="2_c1kvc"]
 [ext_resource type="Texture2D" uid="uid://dp2hj2nhaex8t" path="res://art/tilemap.png" id="3_wsk80"]
+[ext_resource type="PackedScene" uid="uid://bpmxdkstaxl1" path="res://scenes/cheese.tscn" id="4_eplki"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_kq7t1"]
 vertices = PackedVector2Array(16, 16, -16, 16, -16, -16, 16, -16)
@@ -389,8 +390,6 @@ position_smoothing_enabled = true
 position_smoothing_speed = 4.0
 
 [node name="Enemies" type="Node2D" parent="."]
-process_mode = 4
-visible = false
 
 [node name="Enemy" parent="Enemies" instance=ExtResource("2_c1kvc")]
 position = Vector2(395, 121)
@@ -409,3 +408,12 @@ tile_set = SubResource("TileSet_q838p")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
 color = Color(0.0509804, 0.0509804, 0.054902, 0.882353)
+
+[node name="Cheese" parent="." instance=ExtResource("4_eplki")]
+position = Vector2(791, 450)
+
+[node name="Cheese2" parent="." instance=ExtResource("4_eplki")]
+position = Vector2(-292, 536)
+
+[node name="Cheese3" parent="." instance=ExtResource("4_eplki")]
+position = Vector2(973, -65)

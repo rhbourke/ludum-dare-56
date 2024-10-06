@@ -1,8 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://dov0h503tuxh4"]
+[gd_scene load_steps=19 format=3 uid="uid://dov0h503tuxh4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5qtcc"]
 [ext_resource type="Texture2D" uid="uid://cu25jm8tj6jp7" path="res://art/mouse_texture.tres" id="2_bvgeg"]
 [ext_resource type="Texture2D" uid="uid://dqs8mcm8pyl1k" path="res://art/mouse.aesprite.png" id="2_qc2rm"]
+[ext_resource type="Texture2D" uid="uid://usle6pu1clb8" path="res://art/shadow.tres" id="4_jviwr"]
+[ext_resource type="Texture2D" uid="uid://doyvrckrh3kdm" path="res://art/light.tres" id="5_o5yks"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mo374"]
 radius = 16.0
@@ -101,29 +103,6 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="Gradient" id="Gradient_muy4x"]
-offsets = PackedFloat32Array(0, 0.318182)
-colors = PackedColorArray(0, 0, 0, 1, 0, 0, 0, 0)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_22qng"]
-gradient = SubResource("Gradient_muy4x")
-width = 300
-height = 300
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-
-[sub_resource type="Gradient" id="Gradient_q5lvr"]
-offsets = PackedFloat32Array(0.103896, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_x5fy5"]
-gradient = SubResource("Gradient_q5lvr")
-width = 1000
-height = 1000
-fill = 1
-fill_from = Vector2(0.5, 0.5)
-fill_to = Vector2(0.798165, 0.16055)
-
 [node name="Player" type="CharacterBody2D"]
 motion_mode = 1
 wall_min_slide_angle = 2.53596
@@ -142,17 +121,17 @@ scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_xll14")
 animation = &"idle"
 autoplay = "run"
-frame_progress = 0.59752
+frame_progress = 0.370209
 speed_scale = 2.5
 
 [node name="Shadow" type="Sprite2D" parent="AnimatedSprite2D"]
 show_behind_parent = true
 scale = Vector2(0.25, 0.1)
-texture = SubResource("GradientTexture2D_22qng")
+texture = ExtResource("4_jviwr")
 offset = Vector2(0, 60)
 
 [node name="light" type="PointLight2D" parent="."]
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.741176)
-texture = SubResource("GradientTexture2D_x5fy5")
+texture = ExtResource("5_o5yks")
 height = 400.0
