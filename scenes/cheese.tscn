@@ -1,15 +1,18 @@
-[gd_scene load_steps=6 format=3 uid="uid://bpmxdkstaxl1"]
+[gd_scene load_steps=8 format=3 uid="uid://bpmxdkstaxl1"]
 
 [ext_resource type="Script" path="res://scenes/cheese.gd" id="1_eemxb"]
 [ext_resource type="Texture2D" uid="uid://cu8o6qjy3v1ii" path="res://art/cheese.png" id="1_v6v7j"]
 [ext_resource type="Texture2D" uid="uid://usle6pu1clb8" path="res://art/shadow.tres" id="3_f7a2u"]
 [ext_resource type="Texture2D" uid="uid://cwi075twgaikb" path="res://art/cheeselight.tres" id="4_am0vb"]
+[ext_resource type="AudioStream" uid="uid://dmjfmoae01vrg" path="res://sounds/cheesed_grabbed.wav" id="5_d47ot"]
+[ext_resource type="AudioStream" uid="uid://dyhanlsjuvquj" path="res://sounds/munch.wav" id="6_e0vkj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_n2clo"]
 size = Vector2(34, 24)
 
-[node name="Cheese" type="Area2D"]
+[node name="Cheese" type="Area2D" groups=["cheese"]]
 scale = Vector2(2, 2)
+collision_mask = 2
 script = ExtResource("1_eemxb")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,5 +34,14 @@ position = Vector2(0.5, 0.5)
 energy = 0.2
 texture = ExtResource("4_am0vb")
 height = 400.0
+
+[node name="pickupSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_d47ot")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="munchSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_e0vkj")
+bus = &"SFX"
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

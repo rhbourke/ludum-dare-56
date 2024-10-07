@@ -1,10 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://dov0h503tuxh4"]
+[gd_scene load_steps=33 format=3 uid="uid://dov0h503tuxh4"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_5qtcc"]
 [ext_resource type="Texture2D" uid="uid://cu25jm8tj6jp7" path="res://art/mouse_texture.tres" id="2_bvgeg"]
 [ext_resource type="Texture2D" uid="uid://dqs8mcm8pyl1k" path="res://art/mouse.aesprite.png" id="2_qc2rm"]
 [ext_resource type="Texture2D" uid="uid://usle6pu1clb8" path="res://art/shadow.tres" id="4_jviwr"]
 [ext_resource type="Texture2D" uid="uid://doyvrckrh3kdm" path="res://art/light.tres" id="5_o5yks"]
+[ext_resource type="AudioStream" uid="uid://cyq8voq0pc7a5" path="res://sounds/hurt.wav" id="6_a162b"]
+[ext_resource type="AudioStream" uid="uid://bcgx0qhqs7kl4" path="res://sounds/die.wav" id="7_gf720"]
+[ext_resource type="AudioStream" uid="uid://cidn47hih74p8" path="res://sounds/bounce.wav" id="8_efr33"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_mo374"]
 radius = 16.0
@@ -103,7 +106,185 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_1x0hp"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("light:energy")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("light:texture_scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="Animation" id="Animation_1l2ic"]
+resource_name = "die"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 0.615686, 0.611765, 1), Color(1, 0, 0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("light:energy")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_yhijk"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 0.8, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0, 0, 0.784314), Color(1, 1, 1, 0.784314), Color(1, 0, 0, 0.784314), Color(1, 1, 1, 0.784314), Color(1, 0, 0, 0.784314), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-3, 3), Vector2(3, -3), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_ks8jj"]
+resource_name = "won"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("light:texture_scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.466667, 1.6, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [1.0, 0.3, 0.3, 0.01]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(1.1, 1.8),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ec0ux"]
+_data = {
+"RESET": SubResource("Animation_1x0hp"),
+"die": SubResource("Animation_1l2ic"),
+"hurt": SubResource("Animation_yhijk"),
+"won": SubResource("Animation_ks8jj")
+}
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_74i5l"]
+particle_flag_disable_z = true
+angle_min = -720.0
+angle_max = 720.0
+orbit_velocity_min = 9.49949e-08
+orbit_velocity_max = 9.49949e-08
+radial_velocity_min = 153.11
+radial_velocity_max = 280.63
+gravity = Vector3(0, 98, 0)
+radial_accel_min = -47.31
+radial_accel_max = -29.03
+
+[sub_resource type="Gradient" id="Gradient_dctry"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fd1h0"]
+gradient = SubResource("Gradient_dctry")
+width = 3
+height = 3
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dcuqs"]
+particle_flag_disable_z = true
+radial_velocity_min = 21.51
+radial_velocity_max = 49.68
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="Gradient" id="Gradient_s8aio"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(0.980198, 0.750058, 0.427619, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_8ld6p"]
+gradient = SubResource("Gradient_s8aio")
+width = 3
+height = 3
+
 [node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
 motion_mode = 1
 wall_min_slide_angle = 2.53596
 floor_stop_on_slope = false
@@ -134,3 +315,45 @@ shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.741176)
 texture = ExtResource("5_o5yks")
 height = 400.0
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 1.5
+one_shot = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ec0ux")
+}
+
+[node name="hurtSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_a162b")
+bus = &"SFX"
+
+[node name="BloodParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_74i5l")
+texture = SubResource("GradientTexture2D_fd1h0")
+lifetime = 0.2
+one_shot = true
+
+[node name="dieSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("7_gf720")
+volume_db = -8.0
+bus = &"SFX"
+
+[node name="CheeseParticles" type="GPUParticles2D" parent="."]
+position = Vector2(42, 7)
+emitting = false
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_dcuqs")
+texture = SubResource("GradientTexture2D_8ld6p")
+lifetime = 0.7
+one_shot = true
+
+[node name="bounceSoundPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_efr33")
+volume_db = -12.0
+pitch_scale = 0.8
+max_polyphony = 3
+bus = &"SFX"

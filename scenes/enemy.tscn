@@ -90,9 +90,10 @@ radius = 2.4199
 
 [node name="Enemy" type="Node2D"]
 
-[node name="Character Body" type="CharacterBody2D" parent="."]
+[node name="Character Body" type="CharacterBody2D" parent="." groups=["Enemy"]]
 scale = Vector2(8, 8)
-collision_layer = 2
+collision_layer = 128
+collision_mask = 3
 motion_mode = 1
 wall_min_slide_angle = 1.24966
 script = ExtResource("1_shum5")

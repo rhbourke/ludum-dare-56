@@ -11,10 +11,12 @@ func _ready():
 	timer.start(randf_range(0, spawn_time))
 
 func spawn():
-	animation_player.play("spawn_anim")
-	await animation_player.animation_finished
-	var spider = spider.instantiate()
-	add_child(spider)
+	var enemies = get_tree().get_nodes_in_group("Enemy")
+	if enemies.size() < 100:
+		animation_player.play("spawn_anim")
+		await animation_player.animation_finished
+		var spider = spider.instantiate()
+		add_child(spider)
 	
 
 func _on_timer_timeout() -> void:

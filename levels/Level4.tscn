@@ -25,7 +25,7 @@ position_smoothing_speed = 4.0
 position = Vector2(-238, 1180)
 
 [node name="Cheese2" parent="." instance=ExtResource("3_qpseu")]
-position = Vector2(1969, 1170)
+position = Vector2(1940, 946)
 
 [node name="Cheese3" parent="." instance=ExtResource("3_qpseu")]
 position = Vector2(-690, -761)
@@ -35,3 +35,6 @@ position = Vector2(392, 1205)
 
 [node name="Spawner2" parent="." instance=ExtResource("4_4em1e")]
 position = Vector2(-703, 199)
+
+[node name="Spawner3" parent="." instance=ExtResource("4_4em1e")]
+position = Vector2(1684, 1159)

@@ -1,8 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://smnutmxktj34"]
+[gd_scene load_steps=10 format=3 uid="uid://smnutmxktj34"]
 
 [ext_resource type="Theme" uid="uid://uxq28rkwp8ie" path="res://art/theme.tres" id="1_7q41k"]
 [ext_resource type="Texture2D" uid="uid://cu8o6qjy3v1ii" path="res://art/cheese.png" id="2_4vu0x"]
 [ext_resource type="Texture2D" uid="uid://cu25jm8tj6jp7" path="res://art/mouse_texture.tres" id="3_07scm"]
+[ext_resource type="Texture2D" uid="uid://d3dhyep3ssg2t" path="res://art/heart.png" id="4_k3518"]
+[ext_resource type="Script" path="res://scenes/health_icon.gd" id="5_gwhoo"]
+[ext_resource type="Texture2D" uid="uid://bvgmg4etr2und" path="res://art/cheesehud.png" id="6_4ubx8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yl3af"]
+atlas = ExtResource("4_k3518")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vw51o"]
+atlas = SubResource("AtlasTexture_yl3af")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ulry4"]
+atlas = ExtResource("6_4ubx8")
+region = Rect2(0, 0, 0, 32)
 
 [node name="Menus" type="Control"]
 layout_mode = 3
@@ -13,8 +27,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("1_7q41k")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -22,24 +37,24 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0873003, 0.144479, 0.212096, 1)
 
-[node name="Main" type="MarginContainer" parent="."]
+[node name="Main" type="MarginContainer" parent="CanvasLayer"]
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7q41k")
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Main"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="Main/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Main/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("1_7q41k")
@@ -48,71 +63,71 @@ text = "Cheese Chase"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ButtonsVBox" type="VBoxContainer" parent="Main/VBoxContainer"]
+[node name="ButtonsVBox" type="VBoxContainer" parent="CanvasLayer/Main/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="LevelSelectButton" type="Button" parent="Main/VBoxContainer/ButtonsVBox"]
+[node name="LevelSelectButton" type="Button" parent="CanvasLayer/Main/VBoxContainer/ButtonsVBox"]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Level Select"
 
-[node name="HowtoPlayButton" type="Button" parent="Main/VBoxContainer/ButtonsVBox"]
+[node name="HowtoPlayButton" type="Button" parent="CanvasLayer/Main/VBoxContainer/ButtonsVBox"]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "How to Play"
 
-[node name="OptionsButton" type="Button" parent="Main/VBoxContainer/ButtonsVBox"]
+[node name="OptionsButton" type="Button" parent="CanvasLayer/Main/VBoxContainer/ButtonsVBox"]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Options"
 
-[node name="QuitButton" type="Button" parent="Main/VBoxContainer/ButtonsVBox"]
+[node name="QuitButton" type="Button" parent="CanvasLayer/Main/VBoxContainer/ButtonsVBox"]
 custom_minimum_size = Vector2(150, 70)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Quit"
 
-[node name="cheese" type="Sprite2D" parent="Main"]
+[node name="cheese" type="Sprite2D" parent="CanvasLayer/Main"]
 texture_filter = 1
 position = Vector2(1473, 548)
 rotation = -0.359538
 scale = Vector2(13, 13)
 texture = ExtResource("2_4vu0x")
 
-[node name="mouse" type="Sprite2D" parent="Main"]
+[node name="mouse" type="Sprite2D" parent="CanvasLayer/Main"]
 texture_filter = 1
 position = Vector2(513, 755)
 rotation = -0.314159
 scale = Vector2(15, 15)
 texture = ExtResource("3_07scm")
 
-[node name="HowToPlay" type="MarginContainer" parent="."]
-layout_mode = 1
+[node name="HowToPlay" type="MarginContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7q41k")
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HowToPlay"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HowToPlay"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="HowToPlay/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/HowToPlay/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 1
 theme = ExtResource("1_7q41k")
@@ -121,17 +136,17 @@ text = "How to Play"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContentVBox" type="VBoxContainer" parent="HowToPlay/VBoxContainer"]
+[node name="ContentVBox" type="VBoxContainer" parent="CanvasLayer/HowToPlay/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="Panel" type="Panel" parent="HowToPlay/VBoxContainer/ContentVBox"]
+[node name="Panel" type="Panel" parent="CanvasLayer/HowToPlay/VBoxContainer/ContentVBox"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="HowToPlayGuide" type="Label" parent="HowToPlay/VBoxContainer/ContentVBox/Panel"]
+[node name="HowToPlayGuide" type="Label" parent="CanvasLayer/HowToPlay/VBoxContainer/ContentVBox/Panel"]
 layout_mode = 0
 offset_right = 1854.0
 offset_bottom = 433.0
@@ -142,7 +157,7 @@ text = "1. Move with WASD
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ReturnFromHowToPlay" type="Button" parent="HowToPlay/VBoxContainer/ContentVBox"]
+[node name="ReturnFromHowToPlay" type="Button" parent="CanvasLayer/HowToPlay/VBoxContainer/ContentVBox"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -151,24 +166,76 @@ theme_override_font_sizes/font_size = 40
 text = "Okay
 "
 
-[node name="Options" type="MarginContainer" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer/HowToPlay"]
+
+[node name="GameOver" type="MarginContainer" parent="CanvasLayer"]
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7q41k")
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Options"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/GameOver"]
 layout_mode = 2
 alignment = 1
 
-[node name="OptionsHeader" type="Label" parent="Options/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_7q41k")
+theme_override_font_sizes/font_size = 90
+text = "Try Again?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContentVBox" type="VBoxContainer" parent="CanvasLayer/GameOver/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="RestartLevel" type="Button" parent="CanvasLayer/GameOver/VBoxContainer/ContentVBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Restart Level
+"
+
+[node name="ReturnFromGameOver" type="Button" parent="CanvasLayer/GameOver/VBoxContainer/ContentVBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Level Select
+"
+
+[node name="Options" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7q41k")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Options"]
+layout_mode = 2
+alignment = 1
+
+[node name="OptionsHeader" type="Label" parent="CanvasLayer/Options/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 8
 theme = ExtResource("1_7q41k")
@@ -177,29 +244,29 @@ text = "Options"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="MarginContainer" type="MarginContainer" parent="Options/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Options/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/margin_left = 400
 theme_override_constants/margin_right = 400
 
-[node name="ContentVBox" type="VBoxContainer" parent="Options/VBoxContainer/MarginContainer"]
+[node name="ContentVBox" type="VBoxContainer" parent="CanvasLayer/Options/VBoxContainer/MarginContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="FullscreenContainer" type="GridContainer" parent="Options/VBoxContainer/MarginContainer/ContentVBox"]
+[node name="FullscreenContainer" type="GridContainer" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox"]
 layout_mode = 2
 columns = 2
 
-[node name="FullscreenLabel" type="Label" parent="Options/VBoxContainer/MarginContainer/ContentVBox/FullscreenContainer"]
+[node name="FullscreenLabel" type="Label" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/FullscreenContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Fullscreen"
 
-[node name="FullscreenToggle" type="Button" parent="Options/VBoxContainer/MarginContainer/ContentVBox/FullscreenContainer"]
+[node name="FullscreenToggle" type="Button" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/FullscreenContainer"]
 custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 3
@@ -209,39 +276,39 @@ button_pressed = true
 text = "Toggle Fullscreen On/Off
 "
 
-[node name="MusicContainer" type="GridContainer" parent="Options/VBoxContainer/MarginContainer/ContentVBox"]
+[node name="MusicContainer" type="GridContainer" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox"]
 layout_mode = 2
 size_flags_vertical = 4
 columns = 2
 
-[node name="Label" type="Label" parent="Options/VBoxContainer/MarginContainer/ContentVBox/MusicContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/MusicContainer"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "Music Volume"
 
-[node name="Music Slider" type="HSlider" parent="Options/VBoxContainer/MarginContainer/ContentVBox/MusicContainer"]
+[node name="Music Slider" type="HSlider" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/MusicContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="SFX Container" type="GridContainer" parent="Options/VBoxContainer/MarginContainer/ContentVBox"]
+[node name="SFX Container" type="GridContainer" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox"]
 layout_mode = 2
 size_flags_vertical = 4
 columns = 2
 
-[node name="Label" type="Label" parent="Options/VBoxContainer/MarginContainer/ContentVBox/SFX Container"]
+[node name="Label" type="Label" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/SFX Container"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 2
 theme_override_font_sizes/font_size = 40
 text = "SFX Volume"
 
-[node name="SFX Slider" type="HSlider" parent="Options/VBoxContainer/MarginContainer/ContentVBox/SFX Container"]
+[node name="SFX Slider" type="HSlider" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/SFX Container"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 4
 
-[node name="ReturnFromOptions" type="Button" parent="Options/VBoxContainer/MarginContainer/ContentVBox"]
+[node name="ReturnFromOptions" type="Button" parent="CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox"]
 custom_minimum_size = Vector2(250, 70)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -250,24 +317,24 @@ theme_override_font_sizes/font_size = 35
 text = "Return
 "
 
-[node name="LevelSelect" type="MarginContainer" parent="."]
+[node name="LevelSelect" type="MarginContainer" parent="CanvasLayer"]
 visible = false
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_7q41k")
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
 theme_override_constants/margin_right = 32
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LevelSelect"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LevelSelect"]
 layout_mode = 2
 alignment = 1
 
-[node name="Label" type="Label" parent="LevelSelect/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/LevelSelect/VBoxContainer"]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -277,22 +344,22 @@ text = "Level Select"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ContentVBox" type="VBoxContainer" parent="LevelSelect/VBoxContainer"]
+[node name="ContentVBox" type="VBoxContainer" parent="CanvasLayer/LevelSelect/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 theme_override_constants/separation = 15
 alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="LevelSelect/VBoxContainer/ContentVBox"]
+[node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox"]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 6
 
-[node name="Panel" type="Panel" parent="LevelSelect/VBoxContainer/ContentVBox/PanelContainer"]
+[node name="Panel" type="Panel" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox/PanelContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="GridContainer" type="GridContainer" parent="LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -308,39 +375,39 @@ grow_vertical = 2
 theme_override_constants/h_separation = 20
 columns = 5
 
-[node name="LoadLevel1" type="Button" parent="LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
+[node name="LoadLevel1" type="Button" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "1"
 
-[node name="LoadLevel2" type="Button" parent="LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
+[node name="LoadLevel2" type="Button" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "2
 "
 
-[node name="LoadLevel3" type="Button" parent="LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
+[node name="LoadLevel3" type="Button" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "3
 "
 
-[node name="LoadLevel4" type="Button" parent="LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
+[node name="LoadLevel4" type="Button" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "4"
 
-[node name="LoadLevel5" type="Button" parent="LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
+[node name="LoadLevel5" type="Button" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox/PanelContainer/Panel/GridContainer"]
 custom_minimum_size = Vector2(110, 110)
 layout_mode = 2
 theme_override_font_sizes/font_size = 50
 text = "5"
 
-[node name="ReturnFromLevelSelect" type="Button" parent="LevelSelect/VBoxContainer/ContentVBox"]
+[node name="ReturnFromLevelSelect" type="Button" parent="CanvasLayer/LevelSelect/VBoxContainer/ContentVBox"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -348,3 +415,39 @@ size_flags_vertical = 4
 theme_override_font_sizes/font_size = 40
 text = "Return
 "
+
+[node name="HUD" type="MarginContainer" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7q41k")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/HUD"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="HealthIcon" type="TextureRect" parent="CanvasLayer/HUD/VBoxContainer/GridContainer"]
+layout_mode = 2
+texture = SubResource("AtlasTexture_vw51o")
+script = ExtResource("5_gwhoo")
+
+[node name="GridContainer2" type="GridContainer" parent="CanvasLayer/HUD/VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="CheeseIcon" type="TextureRect" parent="CanvasLayer/HUD/VBoxContainer/GridContainer2"]
+visible = false
+layout_mode = 2
+texture = SubResource("AtlasTexture_ulry4")

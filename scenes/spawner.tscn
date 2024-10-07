@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dyhwc32l0vsj5"]
+[gd_scene load_steps=9 format=3 uid="uid://dyhwc32l0vsj5"]
 
 [ext_resource type="Script" path="res://scenes/spawner.gd" id="1_7iotk"]
 [ext_resource type="PackedScene" uid="uid://yaoxqku5k065" path="res://scenes/enemy.tscn" id="2_ejg2p"]
 [ext_resource type="Texture2D" uid="uid://ibvlrq0oe5vc" path="res://art/web.png" id="3_mg8do"]
+[ext_resource type="AudioStream" uid="uid://d172vt7qnxj5u" path="res://sounds/spider_spawn.wav" id="4_cd1ei"]
 
 [sub_resource type="Animation" id="Animation_fomdp"]
 length = 0.001
@@ -30,10 +31,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [false]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [],
+"times": PackedFloat32Array()
+}
+tracks/2/use_blend = true
 
 [sub_resource type="Animation" id="Animation_qxibf"]
 resource_name = "new_animation"
-length = 0.75
+length = 1.3
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -58,6 +70,21 @@ tracks/1/keys = {
 "update": 1,
 "values": [true]
 }
+tracks/2/type = "audio"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AudioStreamPlayer2D")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"clips": [{
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource("4_cd1ei")
+}],
+"times": PackedFloat32Array(0.833333)
+}
+tracks/2/use_blend = true
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mwedn"]
 _data = {
@@ -98,5 +125,9 @@ process_material = SubResource("ParticleProcessMaterial_jt1xu")
 texture = ExtResource("3_mg8do")
 one_shot = true
 randomness = 0.26
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+volume_db = -7.0
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

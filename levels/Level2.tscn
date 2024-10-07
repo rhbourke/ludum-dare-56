@@ -22,7 +22,7 @@ position_smoothing_speed = 4.0
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Cheese" parent="." instance=ExtResource("3_oq4hn")]
-position = Vector2(-1260, 635)
+position = Vector2(-1219, 683)
 
 [node name="Cheese2" parent="." instance=ExtResource("3_oq4hn")]
 position = Vector2(-328, 1230)
@@ -35,3 +35,6 @@ position = Vector2(2311, -993)
 
 [node name="Spawner2" parent="." instance=ExtResource("4_vtvy8")]
 position = Vector2(1756, -1425)
+
+[node name="Spawner3" parent="." instance=ExtResource("4_vtvy8")]
+position = Vector2(1901, -254)

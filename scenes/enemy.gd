@@ -8,6 +8,7 @@ var speed = 150
 @onready var shadow_pos = $AnimatedSprite2D/Shadow.position
 @onready var collision_shape_pos = $CollisionShape2D.position
 
+
 func _ready():
 	call_deferred("setup")
 
@@ -39,6 +40,12 @@ func _physics_process(delta: float) -> void:
 		$CollisionShape2D.position.x = -collision_shape_pos.x
 		
 	move_and_slide()
+	for i in get_slide_collision_count():
+		var collision = get_slide_collision(i)
+		if collision.get_collider().name == "Player":
+			if player:
+				player.handle_enemy_collision()
+		
 		
 func _on_navigation_agent_2d_velocity_computed(safe_velocity: Vector2) -> void:
 	velocity = safe_velocity
