@@ -27,16 +27,10 @@ layout_mode = 1
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
-[node name="Main" parent="Menus/CanvasLayer" index="1"]
-visible = true
-
 [node name="HowToPlayGuide" parent="Menus/CanvasLayer/HowToPlay/VBoxContainer/ContentVBox/Panel" index="0"]
 text = "1. Move with WASD
 2. In each level, find and collect 3 pieces of cheese
 3. Avoid spiders"
-
-[node name="Success" parent="Menus/CanvasLayer" index="4"]
-visible = false
 
 [node name="FullscreenLabel" parent="Menus/CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/FullscreenContainer" index="0"]
 custom_minimum_size = Vector2(500, 0)
@@ -79,7 +73,6 @@ color = Color(0.0352941, 0.0352941, 0.0352941, 1)
 [connection signal="pressed" from="Menus/CanvasLayer/HowToPlay/VBoxContainer/ContentVBox/ReturnFromHowToPlay" to="." method="_on_return_from_how_to_play_pressed"]
 [connection signal="pressed" from="Menus/CanvasLayer/GameOver/VBoxContainer/ContentVBox/RestartLevelFromGameOver" to="." method="_on_restart_level_from_game_over_pressed"]
 [connection signal="pressed" from="Menus/CanvasLayer/GameOver/VBoxContainer/ContentVBox/ReturnFromGameOver" to="." method="_on_return_from_game_over_pressed"]
-[connection signal="pressed" from="Menus/CanvasLayer/Success/VBoxContainer/ContentVBox/NextLevelFromSuccess" to="." method="_on_next_level_from_success_pressed"]
 [connection signal="pressed" from="Menus/CanvasLayer/Success/VBoxContainer/ContentVBox/ReturnFromSuccess" to="." method="_on_return_from_success_pressed"]
 [connection signal="pressed" from="Menus/CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/FullscreenContainer/FullscreenToggle" to="." method="_on_fullscreen_toggle_pressed"]
 [connection signal="value_changed" from="Menus/CanvasLayer/Options/VBoxContainer/MarginContainer/ContentVBox/MusicContainer/Music Slider" to="." method="_on_music_slider_value_changed"]

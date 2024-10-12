@@ -38,7 +38,6 @@ grow_vertical = 2
 color = Color(0.0873003, 0.144479, 0.212096, 1)
 
 [node name="Main" type="MarginContainer" parent="CanvasLayer"]
-visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -202,7 +201,7 @@ theme_override_constants/separation = 20
 alignment = 1
 
 [node name="RestartLevelFromGameOver" type="Button" parent="CanvasLayer/GameOver/VBoxContainer/ContentVBox"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -211,7 +210,7 @@ text = "Restart Level
 "
 
 [node name="ReturnFromGameOver" type="Button" parent="CanvasLayer/GameOver/VBoxContainer/ContentVBox"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -220,6 +219,7 @@ text = "Level Select
 "
 
 [node name="Success" type="MarginContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -250,16 +250,8 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="NextLevelFromSuccess" type="Button" parent="CanvasLayer/Success/VBoxContainer/ContentVBox"]
-custom_minimum_size = Vector2(150, 0)
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-theme_override_font_sizes/font_size = 40
-text = "Next Level"
-
 [node name="ReturnFromSuccess" type="Button" parent="CanvasLayer/Success/VBoxContainer/ContentVBox"]
-custom_minimum_size = Vector2(150, 0)
+custom_minimum_size = Vector2(250, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -472,7 +464,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.5, 2.5)
 theme = ExtResource("1_7q41k")
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32

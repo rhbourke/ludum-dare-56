@@ -152,7 +152,3 @@ func _on_restart_level_from_game_over_pressed() -> void:
 
 func _on_return_from_success_pressed() -> void:
 	open_menu("LevelSelect")
-
-
-func _on_next_level_from_success_pressed() -> void:
-	load_level(curr_level + 1)
