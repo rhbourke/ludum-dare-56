@@ -112,6 +112,7 @@ scale = Vector2(15, 15)
 texture = ExtResource("3_07scm")
 
 [node name="HowToPlay" type="MarginContainer" parent="CanvasLayer"]
+visible = false
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -200,7 +201,7 @@ size_flags_vertical = 3
 theme_override_constants/separation = 20
 alignment = 1
 
-[node name="RestartLevel" type="Button" parent="CanvasLayer/GameOver/VBoxContainer/ContentVBox"]
+[node name="RestartLevelFromGameOver" type="Button" parent="CanvasLayer/GameOver/VBoxContainer/ContentVBox"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -210,6 +211,54 @@ text = "Restart Level
 "
 
 [node name="ReturnFromGameOver" type="Button" parent="CanvasLayer/GameOver/VBoxContainer/ContentVBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Level Select
+"
+
+[node name="Success" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_7q41k")
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Success"]
+layout_mode = 2
+alignment = 1
+
+[node name="Label" type="Label" parent="CanvasLayer/Success/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 1
+theme = ExtResource("1_7q41k")
+theme_override_font_sizes/font_size = 90
+text = "Nice Job!"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ContentVBox" type="VBoxContainer" parent="CanvasLayer/Success/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NextLevelFromSuccess" type="Button" parent="CanvasLayer/Success/VBoxContainer/ContentVBox"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 40
+text = "Next Level"
+
+[node name="ReturnFromSuccess" type="Button" parent="CanvasLayer/Success/VBoxContainer/ContentVBox"]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -423,6 +472,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2.5, 2.5)
 theme = ExtResource("1_7q41k")
 theme_override_constants/margin_left = 32
 theme_override_constants/margin_top = 32
